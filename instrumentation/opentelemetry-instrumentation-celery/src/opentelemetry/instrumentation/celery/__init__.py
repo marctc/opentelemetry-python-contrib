@@ -251,6 +251,7 @@ class CeleryInstrumentor(BaseInstrumentor):
         if ex is not None:
             status_kwargs["description"] = str(ex)
         span.set_status(Status(**status_kwargs))
+        span.record_exception(ex)
 
     @staticmethod
     def _trace_retry(*args, **kwargs):
